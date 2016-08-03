@@ -1,0 +1,426 @@
+<edmx:Edmx   
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="Z_MONITOR_TM_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="ZSH_TRID" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TrqId"/>
+                </Key>
+                <Property Name="TrqId" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Document" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TrqType" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Document Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedOn" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="0" sap:label="Created On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ZCDS_TRQ_FU" sap:semantics="aggregate" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TrqKey"/>
+                    <PropertyRef Name="TrqTrqId"/>
+                    <PropertyRef Name="FuKey"/>
+                    <PropertyRef Name="FuTorId"/>
+                    <PropertyRef Name="TorKey"/>
+                    <PropertyRef Name="TorTorId"/>
+                </Key>
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:aggregation-role="dimension" sap:label="Client"/>
+                <Property Name="TrqKey" Type="Edm.Binary" Nullable="false" sap:aggregation-role="dimension" sap:label="TRQ NodeID"/>
+                <Property Name="TrqTrqId" Type="Edm.String" Nullable="false" MaxLength="20" sap:aggregation-role="dimension" sap:label="TRQ Document"/>
+                <Property Name="TrqTrqType" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="TRQ Document Type"/>
+                <Property Name="TrqTrqCat" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Category"/>
+                <Property Name="TrqOrderDate" Type="Edm.DateTime" Precision="7" sap:aggregation-role="dimension" sap:label="TRQ Order Date"/>
+                <Property Name="TrqShipperId" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Shipper"/>
+                <Property Name="TrqConsigneeId" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Consignee"/>
+                <Property Name="TrqSrcLocId" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:label="TRQ Source Location"/>
+                <Property Name="TrqSrcLocKey" Type="Edm.Binary" sap:aggregation-role="dimension" sap:label="TRQ Location"/>
+                <Property Name="TrqSrcLocIatacode" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ IATA Code (Source)"/>
+                <Property Name="TrqSrcLocUnlocode" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="TRQ UN/LOCODE (Source)"/>
+                <Property Name="TrqPicEarReq" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Pick-Up(Fr)"/>
+                <Property Name="TrqPicLatReq" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Pick-Up (To)"/>
+                <Property Name="TrqPicEarAcc" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Earl. Pick-Up"/>
+                <Property Name="TrqPicLatAcc" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Lat. Pick-Up"/>
+                <Property Name="TrqSrcLocCss" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Security Status"/>
+                <Property Name="TrqSrcLocRegrefno" Type="Edm.String" MaxLength="25" sap:aggregation-role="dimension" sap:label="TRQ Cargo Handover Party"/>
+                <Property Name="TrqSrcLocExpiryDate" Type="Edm.DateTime" Precision="7" sap:aggregation-role="dimension" sap:label="TRQ Expiry Date"/>
+                <Property Name="TrqPicSelTime" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Stop Selection"/>
+                <Property Name="TrqPicEarCnf" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Conf. Pick-Up (Fr)"/>
+                <Property Name="TrqPicLatCnf" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Conf. Pick-Up (To)"/>
+                <Property Name="TrqDesLocId" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:label="TRQ Dest. Location"/>
+                <Property Name="TrqDesLocKey" Type="Edm.Binary" sap:aggregation-role="dimension" sap:label="TRQ Location"/>
+                <Property Name="TrqDesLocIatacode" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ IATA Code (Dest Loc)"/>
+                <Property Name="TrqDesLocUnlocode" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="TRQ UN/LOCODE (Dest.)"/>
+                <Property Name="TrqUnloadPoint" Type="Edm.String" MaxLength="25" sap:aggregation-role="dimension" sap:label="TRQ Unloading Point"/>
+                <Property Name="TrqDelEarReq" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Delivery (From)"/>
+                <Property Name="TrqDelLatReq" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Delivery (To)"/>
+                <Property Name="TrqDelEarAcc" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Earliest Delivery"/>
+                <Property Name="TrqDelLatAcc" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Latest Delivery"/>
+                <Property Name="TrqDelSelTime" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Stop Selection"/>
+                <Property Name="TrqDelEarCnf" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Conf.Delivery (From)"/>
+                <Property Name="TrqDelLatCnf" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Conf.Delivery (To)"/>
+                <Property Name="TrqGroWeiVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TrqGroWeiUni" sap:label="TRQ Gross Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:semantics="aggregate"/>
+                <Property Name="TrqGroWeiUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ Gr. Wt UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TrqGroVolVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TrqGroVolUni" sap:label="TRQ Gross Volume"/>
+                <Property Name="TrqGroVolUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ Gross Vol. UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TrqNetWeiVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TrqNetWeiUni" sap:label="TRQ Net Weight"/>
+                <Property Name="TrqNetWeiUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ Net Wt UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TrqQuaPcsVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TrqQuaPcsUni" sap:label="TRQ Quantity"/>
+                <Property Name="TrqQuaPcsUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ Quantity UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TrqCnfGroWeiVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TrqCnfGroWeiUni" sap:label="TRQ Confirmed Gross Wt"/>
+                <Property Name="TrqCnfGroWeiUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ Confd Gross Wt UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TrqCnfGroVolVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TrqCnfGroVolUni" sap:label="TRQ Cnf. Gr. Volume"/>
+                <Property Name="TrqCnfGroVolUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ Confd Gross Vol. UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TrqCnfQuaPcsVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TrqCnfQuaPcsUni" sap:label="TRQ Confirmed Quantity"/>
+                <Property Name="TrqCnfQuaPcsUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ Confd Quantity UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TrqIncClassCode" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ Incoterm"/>
+                <Property Name="TrqIncTransfLocN" Type="Edm.String" MaxLength="28" sap:aggregation-role="dimension" sap:label="TRQ Inc.Loc.Text"/>
+                <Property Name="TrqIncLocKey" Type="Edm.Binary" sap:aggregation-role="dimension" sap:label="TRQ Incoterm Location"/>
+                <Property Name="TrqIncLocId" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:label="TRQ Incoterm Loc."/>
+                <Property Name="TrqFreightTerm" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Freight Term"/>
+                <Property Name="TrqBaseBtdTco" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="TRQ Base Document Type"/>
+                <Property Name="TrqBaseBtdId" Type="Edm.String" MaxLength="35" sap:aggregation-role="dimension" sap:label="TRQ Base Document"/>
+                <Property Name="TrqBaseBtdVersion" Type="Edm.String" MaxLength="32" sap:aggregation-role="dimension" sap:label="TRQ Base Doc. Version"/>
+                <Property Name="TrqBaseBtdDate" Type="Edm.DateTime" Precision="7" sap:aggregation-role="dimension" sap:label="TRQ Base Document Date"/>
+                <Property Name="TrqBaseBtdProctco" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="TRQ Document  Proc Type"/>
+                <Property Name="TrqBuyorigBtdId" Type="Edm.String" MaxLength="35" sap:aggregation-role="dimension" sap:label="TRQ Buyer Document"/>
+                <Property Name="TrqBuyorigBtdDate" Type="Edm.DateTime" Precision="7" sap:aggregation-role="dimension" sap:label="TRQ Ordering Date"/>
+                <Property Name="TrqSalesOrgId" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:label="TRQ Sales Org."/>
+                <Property Name="TrqSalesOffId" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:label="TRQ Sales Office"/>
+                <Property Name="TrqSalesGroupId" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:label="TRQ Sales Group"/>
+                <Property Name="TrqTrackingNo" Type="Edm.String" MaxLength="35" sap:aggregation-role="dimension" sap:label="TRQ Tracking Number"/>
+                <Property Name="TrqCreatedBy" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="TRQ Created By"/>
+                <Property Name="TrqCreatedOn" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Created On"/>
+                <Property Name="TrqChangedBy" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="TRQ Changed By"/>
+                <Property Name="TrqChangedOn" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Changed On"/>
+                <Property Name="TrqTranssrvlvlCode" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Sales Srvc. Lvl"/>
+                <Property Name="TrqMot" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Transp. Mode"/>
+                <Property Name="TrqMotCat" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TRQ TrM Category"/>
+                <Property Name="TrqShippingType" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ Shipping Type"/>
+                <Property Name="TrqTrafficDirect" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ Traffic Direction"/>
+                <Property Name="TrqMovemType" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ Movement Type"/>
+                <Property Name="TrqConsolType" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ AWB Type"/>
+                <Property Name="TrqStageProfile" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="TRQ Stage Profile"/>
+                <Property Name="TrqStageDetStrat" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TRQ Stage Determination"/>
+                <Property Name="TrqEdiIndicator" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TRQ EDI Indicator"/>
+                <Property Name="TrqPlanDataIncomp" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TRQ PlngData Incom."/>
+                <Property Name="TrqPartnerSchema" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="TRQ Part. Det. Prof."/>
+                <Property Name="TrqLifecycle" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Life Cycle Status"/>
+                <Property Name="TrqArchiving" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Archiving Status"/>
+                <Property Name="TrqApproval" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Approval Status"/>
+                <Property Name="TrqConfirmation" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Conf. Status"/>
+                <Property Name="TrqPlanning" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Planning Status"/>
+                <Property Name="TrqExecution" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Execution Sts"/>
+                <Property Name="TrqCompleteness" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Completeness"/>
+                <Property Name="TrqDelivery" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TRQ Delivery Status"/>
+                <Property Name="TrqDatetimeChlc" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Date/Time"/>
+                <Property Name="TrqDatetimeChcnf" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TRQ Date/Time"/>
+                <Property Name="TrqEewTrqRoot" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TRQ Dummy function in length 1"/>
+                <Property Name="TrqZkac" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Key account code"/>
+                <Property Name="TrqZsot" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ SalesOrderType"/>
+                <Property Name="TrqZpla" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Plant"/>
+                <Property Name="TrqZcom" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Company Code"/>
+                <Property Name="TrqZtrp" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Transit Point"/>
+                <Property Name="TrqZcdc" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Customer distributio"/>
+                <Property Name="TrqZcfs" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Carrier First Stage"/>
+                <Property Name="TrqZcmt" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Buyer"/>
+                <Property Name="TrqZcof" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ ConfHeaderNumber"/>
+                <Property Name="TrqZfde" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Final Destination"/>
+                <Property Name="TrqZmac" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Main Account"/>
+                <Property Name="TrqZslo" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Storage Location"/>
+                <Property Name="TrqZtot" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Trans Ord Type"/>
+                <Property Name="TrqZsalor" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Sales Org"/>
+                <Property Name="TrqZsalof" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Sales Office"/>
+                <Property Name="TrqZsalgr" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Sales Group"/>
+                <Property Name="TrqZsalch" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Sales Channel"/>
+                <Property Name="TrqZsaldv" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Sales Div."/>
+                <Property Name="TrqZppfStep" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TRQ PPF Step"/>
+                <Property Name="TrqZshipment" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TRQ Shipment"/>
+                <Property Name="FuKey" Type="Edm.Binary" Nullable="false" sap:aggregation-role="dimension" sap:label="FU NodeID"/>
+                <Property Name="FuTorId" Type="Edm.String" Nullable="false" MaxLength="20" sap:aggregation-role="dimension" sap:label="FU Document"/>
+                <Property Name="FuTorCat" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Document Category"/>
+                <Property Name="FuTorType" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="FU Document Type"/>
+                <Property Name="FuCreationType" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Creation Type"/>
+                <Property Name="FuLabeltxt" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:label="FU Label"/>
+                <Property Name="FuPartnerRefId" Type="Edm.String" MaxLength="35" sap:aggregation-role="dimension" sap:label="FU Partner Ref Number"/>
+                <Property Name="FuPartnerMblId" Type="Edm.String" MaxLength="35" sap:aggregation-role="dimension" sap:label="FU Carrier's MBL No."/>
+                <Property Name="FuPartnerMblIdStatus" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU WBN Status"/>
+                <Property Name="FuPartnerMblRcvd" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU MBL Status"/>
+                <Property Name="FuMblIssuingDate" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="FU MBL Issuing Date"/>
+                <Property Name="FuBlNumber" Type="Edm.String" MaxLength="24" sap:aggregation-role="dimension" sap:label="FU HBL"/>
+                <Property Name="FuBlNumberStatus" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU WBN Status"/>
+                <Property Name="FuBlNumberFin" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Wayb./BoL Finalized"/>
+                <Property Name="FuIncCheckError" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Incomp. Error"/>
+                <Property Name="FuDocCheckStatus" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Check Status"/>
+                <Property Name="FuDgAdrNoExemption" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU No ADR Exmptn"/>
+                <Property Name="FuCrossDocCheckStatus" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Check Status"/>
+                <Property Name="FuTranssrvlvlCode" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Carr. Srvc. Lvl"/>
+                <Property Name="FuEventScheduled" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Event Scheduled"/>
+                <Property Name="FuPlanProfKey" Type="Edm.Binary" sap:aggregation-role="dimension" sap:label="FU Planning Profile"/>
+                <Property Name="FuTsp" Type="Edm.String" MaxLength="16" sap:aggregation-role="dimension" sap:label="FU Business Partner"/>
+                <Property Name="FuTspid" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="FU Carrier"/>
+                <Property Name="FuTspScac" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="FU SCAC"/>
+                <Property Name="FuTspAirlc" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Airline Code"/>
+                <Property Name="FuTspAirlcawb" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU AWB Prefix"/>
+                <Property Name="FuTspSetBySrvc" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Origin of Entry"/>
+                <Property Name="FuTspexecKey" Type="Edm.String" MaxLength="16" sap:aggregation-role="dimension" sap:label="FU Business Partner"/>
+                <Property Name="FuTspexecid" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="FU Executing Carrier"/>
+                <Property Name="FuTspexecScac" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="FU SCAC"/>
+                <Property Name="FuTspexecAirlc" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Airline Code"/>
+                <Property Name="FuTspexecSetBy" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Origin of Entry"/>
+                <Property Name="FuShpconSetBy" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Origin of Entry"/>
+                <Property Name="FuTspissagntKey" Type="Edm.String" MaxLength="16" sap:aggregation-role="dimension" sap:label="FU Business Partner"/>
+                <Property Name="FuTspissagntId" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="FU Issng Carrier's Agnt"/>
+                <Property Name="FuEikto" Type="Edm.String" MaxLength="14" sap:aggregation-role="dimension" sap:label="FU Acct w/ Carrier"/>
+                <Property Name="FuFinalExecEvent" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:label="FU Last Exp. Event"/>
+                <Property Name="FuAotype" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:label="FU Appl.Obj.Type"/>
+                <Property Name="FuPpfProfile" Type="Edm.String" MaxLength="30" sap:aggregation-role="dimension" sap:label="FU Output Profile"/>
+                <Property Name="FuDfltWeiUom" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Default Weight UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuDfltVolUom" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Default Volume UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuDfltPcsUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Dflt Quantity UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuEnableSettlement" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Enable Settlement"/>
+                <Property Name="FuEnableChargeCalc" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Enable Charge Calc."/>
+                <Property Name="FuServiceLvlPl" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Consolidation (Srce)"/>
+                <Property Name="FuServiceLvlPd" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Consolidation (Dest)"/>
+                <Property Name="FuCarrConfNec" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Carrier Confirmation"/>
+                <Property Name="FuShippingType" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Shipping Type"/>
+                <Property Name="FuMovementType" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Movement Type"/>
+                <Property Name="FuStageProfile" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="FU Stage Profile"/>
+                <Property Name="FuStageDetStrat" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Stage Determination"/>
+                <Property Name="FuTrafficDirect" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Traffic Direction"/>
+                <Property Name="FuExecOrgId" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:label="FU Plan. Exec. Org."/>
+                <Property Name="FuExecGrpId" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:label="FU Plan. Exec. Group"/>
+                <Property Name="FuPurchOrgId" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:label="FU Purch. Organization"/>
+                <Property Name="FuPurchGrpId" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:label="FU Purchasing Group"/>
+                <Property Name="FuArchiving" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Archiving Status"/>
+                <Property Name="FuLifecycle" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Life Cycle Status"/>
+                <Property Name="FuPlanStatusRoot" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Planning Status"/>
+                <Property Name="FuExecution" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Execution Status"/>
+                <Property Name="FuCompliance" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Compliance Status"/>
+                <Property Name="FuDelivery" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Delivery Status"/>
+                <Property Name="FuInvdispResolution" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Dispute Case Status"/>
+                <Property Name="FuBaseBtdTco" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="FU Base Document Type"/>
+                <Property Name="FuBaseBtdId" Type="Edm.String" MaxLength="35" sap:aggregation-role="dimension" sap:label="FU Base Document"/>
+                <Property Name="FuBaseBtdVersion" Type="Edm.String" MaxLength="32" sap:aggregation-role="dimension" sap:label="FU Base Doc. Version"/>
+                <Property Name="FuBaseBtditemTco" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="FU Base Doc. Item Type"/>
+                <Property Name="FuBaseBtditemId" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="FU Base Doc. Item"/>
+                <Property Name="FuErpShpmBtdid" Type="Edm.String" MaxLength="35" sap:aggregation-role="dimension" sap:label="FU ERP Shipment"/>
+                <Property Name="FuErpShpmLogsys" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="FU Logical System"/>
+                <Property Name="FuErpShpmType" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="FU ERP Shipment Type"/>
+                <Property Name="FuFubrKey" Type="Edm.Binary" sap:aggregation-role="dimension" sap:label="FU FUB Rule UUID"/>
+                <Property Name="FuTrqCat" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Category"/>
+                <Property Name="FuEstMaDate" Type="Edm.DateTime" Precision="0" sap:aggregation-role="dimension" sap:label="FU Mat. Avail. Date"/>
+                <Property Name="FuArrivalDate" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="FU Transp. Plng Date"/>
+                <Property Name="FuMsgDlvCounter" Type="Edm.Int32" sap:aggregation-role="measure" sap:label="FU Number"/>
+                <Property Name="FuMtr" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="FU Means of Transport"/>
+                <Property Name="FuTrmodcod" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Transp. Mode"/>
+                <Property Name="FuTrmodcat" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU TrM Category"/>
+                <Property Name="FuMaxUtil" Type="Edm.Decimal" Precision="16" Scale="2" sap:aggregation-role="measure" sap:label="FU Maximum Utilization"/>
+                <Property Name="FuMaxUtilMass" Type="Edm.Decimal" Precision="16" Scale="2" sap:aggregation-role="measure" sap:label="FU Maximum Utilization"/>
+                <Property Name="FuMaxUtilVolume" Type="Edm.Decimal" Precision="16" Scale="2" sap:aggregation-role="measure" sap:label="FU Maximum Utilization"/>
+                <Property Name="FuMaxUtilLength" Type="Edm.Decimal" Precision="16" Scale="2" sap:aggregation-role="measure" sap:label="FU Maximum Utilization"/>
+                <Property Name="FuGroWeiVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuGroWeiUni" sap:label="FU Gross Weight"/>
+                <Property Name="FuGroWeiUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Gr. Wt UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuGroVolVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorGroVolUni" sap:label="FU Gross Volume"/>
+                <Property Name="FuGroVolUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Gross Vol. UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuNetWeiVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorNetWeiUni" sap:label="FU Net Weight"/>
+                <Property Name="FuNetWeiUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Net Wt UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuQuaPcsVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuQuaPcsUni" sap:label="FU Quantity"/>
+                <Property Name="FuQuaPcsUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Quantity UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuQuaPcs2Val" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuQuaPcs2Uni" sap:label="FU Alternative Quantity"/>
+                <Property Name="FuQuaPcs2Uni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Alternative Qty UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuBaseUomVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuBaseUomUni" sap:label="FU Base Quantity"/>
+                <Property Name="FuBaseUomUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Base UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuPkgunWeiVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorPkgunWeiUni" sap:label="FU Tare Weight"/>
+                <Property Name="FuPkgunWeiUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Tare Weight UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuContCntVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorContCntUni" sap:label="FU TEU"/>
+                <Property Name="FuContCntUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Number of TEU UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuGroWeiValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuGroWeiUnicap" sap:label="FU Gross Weight"/>
+                <Property Name="FuGroWeiUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Gr. Wt UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuGroVolValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuGroVolUnicap" sap:label="FU Gross Volume"/>
+                <Property Name="FuGroVolUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Gross Vol. UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuNetWeiValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuNetWeiUnicap" sap:label="FU Net Weight"/>
+                <Property Name="FuNetWeiUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Net Wt UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuQuaPcsValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorQuaPcsUnicap" sap:label="FU Quantity"/>
+                <Property Name="FuQuaPcsUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Quantity UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuQuaPcs2Valcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuQuaPcs2Unicap" sap:label="FU Alternative Quantity"/>
+                <Property Name="FuQuaPcs2Unicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Alternative Qty UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuBaseUomValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorBaseUomUnicap" sap:label="FU Base Quantity"/>
+                <Property Name="FuBaseUomUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Base UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuPkgunWeiValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuPkgunWeiUnicap" sap:label="FU Tare Weight"/>
+                <Property Name="FuPkgunWeiUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Tare Weight UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuContCntValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorContCntUnicap" sap:label="FU TEU"/>
+                <Property Name="FuContCntUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU Number of TEU UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuDgAdrPtsValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorDgAdrPtsUnicap" sap:label="FU ADR Points"/>
+                <Property Name="FuDgAdrPtsUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU ADR Points UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="FuConfirmation" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Confirm. Status"/>
+                <Property Name="FuSubcontracting" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Subcontr. Status"/>
+                <Property Name="FuCmId" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:label="FU Continuous Move ID"/>
+                <Property Name="FuCsExecuted" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Carr. Sel. Executed"/>
+                <Property Name="FuDatetimeChscs" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="FU Date/Time"/>
+                <Property Name="FuUserIdChscs" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="FU Changed By"/>
+                <Property Name="FuDatetimeChscc" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="FU Date/Time"/>
+                <Property Name="FuUserIdChscc" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="FU Changed By"/>
+                <Property Name="FuFreightTerm" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Freight Term"/>
+                <Property Name="FuCreatedBy" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="FU Created By"/>
+                <Property Name="FuCreatedOn" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="FU Created On"/>
+                <Property Name="FuChangedBy" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="FU Changed By"/>
+                <Property Name="FuChangedOn" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="FU Changed On"/>
+                <Property Name="FuDatetimeChlc" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="FU Date/Time"/>
+                <Property Name="FuUserIdChlc" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="FU Changed By"/>
+                <Property Name="FuDatetimeChexc" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="FU Date/Time"/>
+                <Property Name="FuUserIdChexc" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="FU Changed By"/>
+                <Property Name="FuEewTorRoot" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="FU Dummy function in length 1"/>
+                <Property Name="FuZppfStep" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="FU PPF Step"/>
+                <Property Name="FuCustoms" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Customs Status"/>
+                <Property Name="FuSciCode" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="FU Special Customs Info"/>
+                <Property Name="FuDensityFactor" Type="Edm.Decimal" Precision="5" Scale="1" sap:aggregation-role="measure" sap:label="FU Density Factor"/>
+                <Property Name="TorKey" Type="Edm.Binary" Nullable="false" sap:aggregation-role="dimension" sap:label="TOR NodeID"/>
+                <Property Name="TorTorId" Type="Edm.String" Nullable="false" MaxLength="20" sap:aggregation-role="dimension" sap:label="TOR Document"/>
+                <Property Name="TorTorCat" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Document Category"/>
+                <Property Name="TorTorType" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="TOR Document Type"/>
+                <Property Name="TorCreationType" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Creation Type"/>
+                <Property Name="TorLabeltxt" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:label="TOR Label"/>
+                <Property Name="TorPartnerRefId" Type="Edm.String" MaxLength="35" sap:aggregation-role="dimension" sap:label="TOR Partner Ref Number"/>
+                <Property Name="TorPartnerMblId" Type="Edm.String" MaxLength="35" sap:aggregation-role="dimension" sap:label="TOR Carrier's MBL No."/>
+                <Property Name="TorPartnerMblIdStatus" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR WBN Status"/>
+                <Property Name="TorPartnerMblRcvd" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR MBL Status"/>
+                <Property Name="TorMblIssuingDate" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TOR MBL Issuing Date"/>
+                <Property Name="TorBlNumber" Type="Edm.String" MaxLength="24" sap:aggregation-role="dimension" sap:label="TOR HBL"/>
+                <Property Name="TorBlNumberStatus" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR WBN Status"/>
+                <Property Name="TorBlNumberFin" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Wayb./BoL Finalized"/>
+                <Property Name="TorIncCheckError" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Incomp. Error"/>
+                <Property Name="TorDocCheckStatus" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Check Status"/>
+                <Property Name="TorDgAdrNoExemption" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR No ADR Exmptn"/>
+                <Property Name="TorCrossDocCheckStatus" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Check Status"/>
+                <Property Name="TorTranssrvlvlCode" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Carr. Srvc. Lvl"/>
+                <Property Name="TorEventScheduled" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Event Scheduled"/>
+                <Property Name="TorPlanProfKey" Type="Edm.Binary" sap:aggregation-role="dimension" sap:label="TOR Planning Profile"/>
+                <Property Name="TorTsp" Type="Edm.String" MaxLength="16" sap:aggregation-role="dimension" sap:label="TOR Business Partner"/>
+                <Property Name="TorTspid" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TOR Carrier"/>
+                <Property Name="TorTspScac" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="TOR SCAC"/>
+                <Property Name="TorTspAirlc" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Airline Code"/>
+                <Property Name="TorTspAirlcawb" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR AWB Prefix"/>
+                <Property Name="TorTspSetBySrvc" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Origin of Entry"/>
+                <Property Name="TorTspexecKey" Type="Edm.String" MaxLength="16" sap:aggregation-role="dimension" sap:label="TOR Business Partner"/>
+                <Property Name="TorTspexecid" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TOR Executing Carrier"/>
+                <Property Name="TorTspexecScac" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="TOR SCAC"/>
+                <Property Name="TorTspexecAirlc" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Airline Code"/>
+                <Property Name="TorTspexecSetBy" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Origin of Entry"/>
+                <Property Name="TorShpconSetBy" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Origin of Entry"/>
+                <Property Name="TorTspissagntKey" Type="Edm.String" MaxLength="16" sap:aggregation-role="dimension" sap:label="TOR Business Partner"/>
+                <Property Name="TorTspissagntId" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TOR Issng Carrier's Agnt"/>
+                <Property Name="TorEikto" Type="Edm.String" MaxLength="14" sap:aggregation-role="dimension" sap:label="TOR Acct w/ Carrier"/>
+                <Property Name="TorFinalExecEvent" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:label="TOR Last Exp. Event"/>
+                <Property Name="TorAotype" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:label="TOR Appl.Obj.Type"/>
+                <Property Name="TorPpfProfile" Type="Edm.String" MaxLength="30" sap:aggregation-role="dimension" sap:label="TOR Output Profile"/>
+                <Property Name="TorDfltWeiUom" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Default Weight UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorDfltVolUom" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Default Volume UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorDfltPcsUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Dflt Quantity UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorEnableSettlement" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Enable Settlement"/>
+                <Property Name="TorEnableChargeCalc" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Enable Charge Calc."/>
+                <Property Name="TorServiceLvlPl" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Consolidation (Srce)"/>
+                <Property Name="TorServiceLvlPd" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Consolidation (Dest)"/>
+                <Property Name="TorCarrConfNec" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Carrier Confirmation"/>
+                <Property Name="TorShippingType" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Shipping Type"/>
+                <Property Name="TorMovementType" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Movement Type"/>
+                <Property Name="TorStageProfile" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="TOR Stage Profile"/>
+                <Property Name="TorStageDetStrat" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Stage Determination"/>
+                <Property Name="TorTrafficDirect" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Traffic Direction"/>
+                <Property Name="TorExecOrgId" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:label="TOR Plan. Exec. Org."/>
+                <Property Name="TorExecGrpId" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:label="TOR Plan. Exec. Group"/>
+                <Property Name="TorPurchOrgId" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:label="TOR Purch. Organization"/>
+                <Property Name="TorPurchGrpId" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:label="TOR Purchasing Group"/>
+                <Property Name="TorArchiving" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Archiving Status"/>
+                <Property Name="TorLifecycle" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Life Cycle Status"/>
+                <Property Name="TorPlanStatusRoot" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Planning Status"/>
+                <Property Name="TorExecution" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Execution Status"/>
+                <Property Name="TorCompliance" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Compliance Status"/>
+                <Property Name="TorDelivery" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Delivery Status"/>
+                <Property Name="TorInvdispResolution" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Dispute Case Status"/>
+                <Property Name="TorBaseBtdTco" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="TOR Base Document Type"/>
+                <Property Name="TorBaseBtdId" Type="Edm.String" MaxLength="35" sap:aggregation-role="dimension" sap:label="TOR Base Document"/>
+                <Property Name="TorBaseBtdVersion" Type="Edm.String" MaxLength="32" sap:aggregation-role="dimension" sap:label="TOR Base Doc. Version"/>
+                <Property Name="TorBaseBtditemTco" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="TOR Base Doc. Item Type"/>
+                <Property Name="TorBaseBtditemId" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TOR Base Doc. Item"/>
+                <Property Name="TorErpShpmBtdid" Type="Edm.String" MaxLength="35" sap:aggregation-role="dimension" sap:label="TOR ERP Shipment"/>
+                <Property Name="TorErpShpmLogsys" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TOR Logical System"/>
+                <Property Name="TorErpShpmType" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="TOR ERP Shipment Type"/>
+                <Property Name="TorFubrKey" Type="Edm.Binary" sap:aggregation-role="dimension" sap:label="TOR FUB Rule UUID"/>
+                <Property Name="TorTrqCat" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Category"/>
+                <Property Name="TorEstMaDate" Type="Edm.DateTime" Precision="0" sap:aggregation-role="dimension" sap:label="TOR Mat. Avail. Date"/>
+                <Property Name="TorArrivalDate" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TOR Transp. Plng Date"/>
+                <Property Name="TorMsgDlvCounter" Type="Edm.Int32" sap:aggregation-role="measure" sap:label="TOR Number"/>
+                <Property Name="TorMtr" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="TOR Means of Transport"/>
+                <Property Name="TorTrmodcod" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Transp. Mode"/>
+                <Property Name="TorTrmodcat" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR TrM Category"/>
+                <Property Name="TorMaxUtil" Type="Edm.Decimal" Precision="16" Scale="2" sap:aggregation-role="measure" sap:label="TOR Maximum Utilization"/>
+                <Property Name="TorMaxUtilMass" Type="Edm.Decimal" Precision="16" Scale="2" sap:aggregation-role="measure" sap:label="TOR Maximum Utilization"/>
+                <Property Name="TorMaxUtilVolume" Type="Edm.Decimal" Precision="16" Scale="2" sap:aggregation-role="measure" sap:label="TOR Maximum Utilization"/>
+                <Property Name="TorMaxUtilLength" Type="Edm.Decimal" Precision="16" Scale="2" sap:aggregation-role="measure" sap:label="TOR Maximum Utilization"/>
+                <Property Name="TorGroWeiVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuGroWeiUni" sap:label="TOR Gross Weight"/>
+                <Property Name="TorGroWeiUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Gr. Wt UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorGroVolVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorGroVolUni" sap:label="TOR Gross Volume"/>
+                <Property Name="TorGroVolUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Gross Vol. UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorNetWeiVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorNetWeiUni" sap:label="TOR Net Weight"/>
+                <Property Name="TorNetWeiUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Net Wt UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorQuaPcsVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuQuaPcsUni" sap:label="TOR Quantity"/>
+                <Property Name="TorQuaPcsUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Quantity UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorQuaPcs2Val" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuQuaPcs2Uni" sap:label="TOR Alternative Quantity"/>
+                <Property Name="TorQuaPcs2Uni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Alternative Qty UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorBaseUomVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuBaseUomUni" sap:label="TOR Base Quantity"/>
+                <Property Name="TorBaseUomUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Base UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorPkgunWeiVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorPkgunWeiUni" sap:label="TOR Tare Weight"/>
+                <Property Name="TorPkgunWeiUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Tare Weight UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorContCntVal" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorContCntUni" sap:label="TOR TEU"/>
+                <Property Name="TorContCntUni" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Number of TEU UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorGroWeiValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuGroWeiUnicap" sap:label="TOR Gross Weight"/>
+                <Property Name="TorGroWeiUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Gr. Wt UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorGroVolValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuGroVolUnicap" sap:label="TOR Gross Volume"/>
+                <Property Name="TorGroVolUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Gross Vol. UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorNetWeiValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuNetWeiUnicap" sap:label="TOR Net Weight"/>
+                <Property Name="TorNetWeiUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Net Wt UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorQuaPcsValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorQuaPcsUnicap" sap:label="TOR Quantity"/>
+                <Property Name="TorQuaPcsUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Quantity UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorQuaPcs2Valcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuQuaPcs2Unicap" sap:label="TOR Alternative Quantity"/>
+                <Property Name="TorQuaPcs2Unicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Alternative Qty UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorBaseUomValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorBaseUomUnicap" sap:label="TOR Base Quantity"/>
+                <Property Name="TorBaseUomUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Base UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorPkgunWeiValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="FuPkgunWeiUnicap" sap:label="TOR Tare Weight"/>
+                <Property Name="TorPkgunWeiUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Tare Weight UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorContCntValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorContCntUnicap" sap:label="TOR TEU"/>
+                <Property Name="TorContCntUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR Number of TEU UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorDgAdrPtsValcap" Type="Edm.Decimal" Precision="31" Scale="14" sap:aggregation-role="measure" sap:unit="TorDgAdrPtsUnicap" sap:label="TOR ADR Points"/>
+                <Property Name="TorDgAdrPtsUnicap" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR ADR Points UoM" sap:semantics="unit-of-measure"/>
+                <Property Name="TorConfirmation" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Confirm. Status"/>
+                <Property Name="TorSubcontracting" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Subcontr. Status"/>
+                <Property Name="TorCmId" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:label="TOR Continuous Move ID"/>
+                <Property Name="TorCsExecuted" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Carr. Sel. Executed"/>
+                <Property Name="TorDatetimeChscs" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TOR Date/Time"/>
+                <Property Name="TorUserIdChscs" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="TOR Changed By"/>
+                <Property Name="TorDatetimeChscc" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TOR Date/Time"/>
+                <Property Name="TorUserIdChscc" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="TOR Changed By"/>
+                <Property Name="TorFreightTerm" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Freight Term"/>
+                <Property Name="TorCreatedBy" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="TOR Created By"/>
+                <Property Name="TorCreatedOn" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TOR Created On"/>
+                <Property Name="TorChangedBy" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="TOR Changed By"/>
+                <Property Name="TorChangedOn" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TOR Changed On"/>
+                <Property Name="TorDatetimeChlc" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TOR Date/Time"/>
+                <Property Name="TorUserIdChlc" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="TOR Changed By"/>
+                <Property Name="TorDatetimeChexc" Type="Edm.Decimal" Precision="15" Scale="0" sap:aggregation-role="measure" sap:label="TOR Date/Time"/>
+                <Property Name="TorUserIdChexc" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="TOR Changed By"/>
+                <Property Name="TorEewTorRoot" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="TOR Dummy function in length 1"/>
+                <Property Name="TorZppfStep" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="TOR PPF Step"/>
+                <Property Name="TorCustoms" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Customs Status"/>
+                <Property Name="TorSciCode" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="TOR Special Customs Info"/>
+                <Property Name="TorDensityFactor" Type="Edm.Decimal" Precision="5" Scale="1" sap:aggregation-role="measure" sap:label="TOR Density Factor"/>
+            </EntityType>
+            <EntityContainer Name="Z_MONITOR_TM_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZTRIDSET" EntityType="Z_MONITOR_TM_SRV.ZSH_TRID" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ZCDS_TRQ_FUSet" EntityType="Z_MONITOR_TM_SRV.ZCDS_TRQ_FU" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/Z_MONITOR_TM_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/Z_MONITOR_TM_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
